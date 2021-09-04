@@ -3,6 +3,8 @@
 ## Brief
 本腳本皆作用於校務系統的「選上/剩餘名額/待亂數人數統計」頁面，利用使用者腳本(userscript)提供一些小功能，旨在幫助選課更加便利。
 
+**New:** 新增適用於[課程表總錄](https://www.ccxp.nthu.edu.tw/ccxp/INQUIRE/JH/6/6.2/6.2.9/JH629001.php)的腳本。
+
 ## Features
 
 ### 課程中選率
@@ -18,5 +20,7 @@
 
 ## Install
 1. 安裝腳本管理器，如 [Tampermonkey](https://www.tampermonkey.net/)
-2. 從 GreasyFork 安裝腳本：https://greasyfork.org/zh-TW/scripts/422389-nthu-course-selecting-helper
+2. 從 GreasyFork 安裝腳本
+  * https://greasyfork.org/zh-TW/scripts/422389-nthu-course-selecting-helper
+  * https://greasyfork.org/zh-TW/scripts/431903-nthu-courses-selecting-helper-for-curriculum-list
 3. Enjoy :)
