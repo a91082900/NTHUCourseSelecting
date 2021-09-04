@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NTHU Course Selecting Helper
 // @namespace    mailto:a91082900@gmail.com
-// @version      1.0
+// @version      1.1
 // @description  some extra features for NTHU course selection
 // @author       a91082900
 // @match        https://www.ccxp.nthu.edu.tw/ccxp/COURSE/JH/7/7.2/7.2.7/JH727002.php
@@ -30,14 +30,21 @@
 
         var l = tr.childElementCount;
         var p = 0;
-        if(tr.children[l-2].innerText != "0") {
+        var totalQuota = tr.children[l-4].innerText.split('/');
+        var remain = parseInt(tr.children[l-2].innerText);
+        var waiting = parseInt(tr.children[l-1].innerText);
+        if(totalQuota.length > 1) { // freshmen only
+            remain -= parseInt(totalQuota[1]);
+            tr.children[l-2].innerHTML = `<div align="center">` + tr.children[l-2].innerText + "/" + remain.toString() + `</div>`;
+        }
+        if(remain > 0) {
             tr.bgColor = "yellow";
-            if(tr.children[l-2].innerText - tr.children[l-1].innerText > 0) {
+            if(remain - waiting > 0) {
                 tr.children[l-1].bgColor = "orange";
                 p = 100;
             }
             else {
-                p = Math.round(parseInt(tr.children[l-2].innerText) / parseInt(tr.children[l-1].innerText) * 10000) / 100;
+                p = Math.round((remain / waiting) * 10000) / 100;
             }
         }
 
