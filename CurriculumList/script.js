@@ -12,25 +12,30 @@
     'use strict';
 
 	var tbody = document.querySelector("tbody");
+    var filterText = document.createElement("input");
 	var inputText = document.createElement("input");
 	var inputButton = document.createElement("input");
     var checkBox = document.createElement("input");
     var descriptionText = document.createElement("span");
+    inputText.placeholder = "時段";
+    filterText.value = "校隊,大一體育"
+    filterText.placeholder = "欲排除關鍵字 (逗號分隔)";
     descriptionText.innerText = "是否隱藏已達人數上限課程";
     checkBox.type = "checkbox";
 	inputButton.type = "button";
-	inputButton.value = "篩選時段";
+	inputButton.value = "篩選";
 	inputButton.onclick = function(event) {
 		doFilter();
 	};
 	var form = document.querySelector("form");
 	form.insertBefore(inputButton, tbody.parentElement);
-	form.insertBefore(inputText, inputButton);
-    form.insertBefore(checkBox, inputText);
-    form.insertBefore(descriptionText, checkBox);
+	form.insertBefore(filterText, inputButton);
+    form.insertBefore(inputText, filterText);
+    form.insertBefore(descriptionText, inputText);
+    form.insertBefore(checkBox, descriptionText);
 
 	function doFilter() {
-		var exclude = ["校隊", "大一體育"]; // TODO: edit this on page
+		var exclude = filterText.value.split(",").map(t => t.trim());
 		var availableTime = inputText.value;
 		for(var i = 0; i < tbody.childElementCount; i+=2) {
 			var tr = tbody.children[i], desc = tbody.children[i+1];
